@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import jwt from 'jsonwebtoken';
 
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,6 +10,7 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 
 import Form from './form';
+import { setAuth } from '../../store/actions/user';
 
 import config from './config.json';
 import useRequest from '../../hooks/request';
@@ -26,6 +29,20 @@ const Auth = () => {
     url: opts.url,
     data: opts.data
   });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      console.log('useffect');
+      const payload = jwt.decode(data.token);
+      console.log(payload);
+      dispatch(setAuth({
+        token: data.token,
+        ...payload
+      }));
+    }
+  }, [dispatch, data]);
 
   const forms = Object.keys(config);
 
