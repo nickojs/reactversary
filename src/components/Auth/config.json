@@ -1,0 +1,75 @@
+{
+  "signup": {
+    "meta": {
+      "name": "Cadastro",
+      "icon": "account"
+    },
+    "inputs": {
+      "fullname": {
+        "name": "name",
+        "type": "text",
+        "id": "name",
+        "label": "Nome",
+        "placeholder": "Nome completo"
+      },
+      "email": {
+        "name": "email",
+        "type": "email",
+        "id": "email",
+        "label": "E-mail",
+        "placeholder": "seu@email.com"
+      },
+      "password": {
+        "name": "password",
+        "type": "password",
+        "id": "password",
+        "label": "Senha",
+        "placeholder": "Crie uma senha..."
+      },
+      "confirmPassword": {
+        "name": "confirmPassword",
+        "type": "password",
+        "id": "confirmPassword",
+        "label": "Confirmar Senha",
+        "placeholder": "Confirme a senha"
+      }
+    }
+  },
+  "login": {
+    "meta": {
+      "name": "Login",
+      "icon": "login"
+    },
+    "inputs": {
+      "email": {
+        "name": "email",
+        "type": "email",
+        "id": "email",
+        "label": "E-mail",
+        "placeholder": "seu@email.com"
+      },
+      "password": {
+        "name": "password",
+        "type": "password",
+        "id": "password",
+        "label": "Senha",
+        "placeholder": "Crie uma senha..."
+      }
+    }
+  },
+  "token": {
+    "meta": {
+      "name": "Gerar Token",
+      "icon": "token"
+    },
+    "inputs": {
+      "email": {
+        "name": "email",
+        "type": "email",
+        "id": "email",
+        "label": "E-mail",
+        "placeholder": "Email para receber o token"
+      }
+    }
+  }
+}

@@ -1,48 +1,42 @@
 import React, { useState } from 'react';
 
-import { Title, InnerContainer, Card } from '../../generalStyles';
-import Forms from './forms/forms';
+import Container from '@material-ui/core/Container';
+import AppBar from '@material-ui/core/AppBar';
+import Tab from '@material-ui/core/Tab';
+import TabContext from '@material-ui/lab/TabContext';
+import TabList from '@material-ui/lab/TabList';
+import TabPanel from '@material-ui/lab/TabPanel';
+
+import config from './config.json';
+import Form from './form';
 
 const Auth = () => {
-  const [index, setIndex] = useState(0);
+  const [value, setValue] = useState('1');
+  const handleChange = (event, newValue) => setValue(newValue);
 
-  const types = [{
-    name: 'sign in',
-    index: 0
-  }, {
-    name: 'log in',
-    index: 1
-  }, {
-    name: 'forgot password',
-    index: 2
-  }];
-
-  const changeFormType = (i) => setIndex(i);
-
-  const menu = (
-    <ul>
-      {types.map((each) => (
-        <li key={each.index}>
-          <button
-            type="button"
-            onClick={() => changeFormType(each.index)}
-          >
-            {each.name}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
+  const forms = Object.keys(config);
 
   return (
-    <>
-      {menu}
-      <Card>
-        <InnerContainer>
-          <Forms index={index} />
-        </InnerContainer>
-      </Card>
-    </>
+    <Container>
+      <TabContext value={value}>
+        <AppBar position="static">
+          <TabList
+            onChange={handleChange}
+            centered
+            aria-label="authentication menus"
+          >
+            {forms.map((each, i) => (
+              <Tab key={i} label={each} value={String(i)} />
+            ))}
+          </TabList>
+        </AppBar>
+        {forms.map((each, i) => (
+          <TabPanel key={i} value={String(i)}>
+            <Form config={config[each]} />
+          </TabPanel>
+        ))}
+      </TabContext>
+    </Container>
   );
 };
 
