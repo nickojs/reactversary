@@ -64,7 +64,7 @@ export default (options) => {
   const clearState = () => dispatch({ type: 'CLEAR' });
 
   useEffect(() => {
-    if (options.method) {
+    if (options && options.method) {
       fetchData();
     }
   }, [options, fetchData]);
