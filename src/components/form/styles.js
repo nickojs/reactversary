@@ -18,5 +18,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  errorMsg: {
+    textAlign: 'center',
+    padding: '8px'
   }
 }));

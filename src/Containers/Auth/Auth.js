@@ -21,7 +21,7 @@ const Auth = () => {
 
   const [options, setOptions] = useState(null);
   const [requestData] = useRequest(options);
-  const { data, loading, error } = requestData;
+  const { data } = requestData;
 
   const optionsHandler = (opts) => setOptions({
     method: 'POST',
@@ -34,9 +34,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('useffect');
       const payload = jwt.decode(data.token);
-      console.log(payload);
       dispatch(setAuth({
         token: data.token,
         ...payload
@@ -45,8 +43,6 @@ const Auth = () => {
   }, [dispatch, data]);
 
   const forms = Object.keys(config);
-
-  console.log(requestData);
 
   return (
     <Container>
@@ -64,7 +60,11 @@ const Auth = () => {
         </AppBar>
         {forms.map((each, i) => (
           <TabPanel key={i} value={String(i)}>
-            <Form config={config[each]} setOptions={optionsHandler} />
+            <Form
+              config={config[each]}
+              setOptions={optionsHandler}
+              requestData={requestData}
+            />
           </TabPanel>
         ))}
       </TabContext>
