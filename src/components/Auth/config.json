@@ -2,7 +2,8 @@
   "signup": {
     "meta": {
       "name": "Cadastro",
-      "icon": "account"
+      "icon": "account",
+      "url": "signup"
     },
     "inputs": {
       "fullname": {
@@ -62,7 +63,8 @@
   "login": {
     "meta": {
       "name": "Login",
-      "icon": "login"
+      "icon": "login",
+      "url": "login"
     },
     "inputs": {
       "email": {

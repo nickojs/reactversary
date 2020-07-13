@@ -19,16 +19,18 @@ import Typography from '@material-ui/core/Typography';
 
 import { useStyles } from './styles';
 
-const Form = ({ config }) => {
+const Form = ({ config, setOptions }) => {
   const { control, handleSubmit, errors } = useForm({
     mode: 'onBlur'
   });
-  const submitHandler = (data) => console.log(data);
 
   const { meta, inputs } = config;
   const classes = useStyles();
 
-  console.log(errors);
+  const submitHandler = (data) => setOptions({
+    data,
+    url: meta.url
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,7 +63,7 @@ const Form = ({ config }) => {
                   fullWidth
                   variant="outlined"
                   defaultValue=""
-                  autoComplete={inputs[each].placeholder}
+                  placeholder={inputs[each].placeholder}
                 />
                 <p key={each}>{errors[each]?.type === 'required' && `${each} is required`}</p>
               </Grid>
@@ -72,6 +74,7 @@ const Form = ({ config }) => {
             fullWidth
             variant="contained"
             color="primary"
+            disabled={Object.keys(errors).length > 0}
             className={classes.submit}
           >
             {meta.name}

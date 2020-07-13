@@ -7,14 +7,29 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 
-import config from './config.json';
 import Form from './form';
+
+import config from './config.json';
+import useRequest from '../../hooks/request';
 
 const Auth = () => {
   const [value, setValue] = useState('1');
   const handleChange = (event, newValue) => setValue(newValue);
 
+  const [options, setOptions] = useState(null);
+  const [requestData] = useRequest(options);
+  const { data, loading, error } = requestData;
+
+  const optionsHandler = (opts) => setOptions({
+    method: 'POST',
+    baseURL: `http://${process.env.REACT_APP_BACKEND}:5000/auth/`,
+    url: opts.url,
+    data: opts.data
+  });
+
   const forms = Object.keys(config);
+
+  console.log(requestData);
 
   return (
     <Container>
@@ -32,7 +47,7 @@ const Auth = () => {
         </AppBar>
         {forms.map((each, i) => (
           <TabPanel key={i} value={String(i)}>
-            <Form config={config[each]} />
+            <Form config={config[each]} setOptions={optionsHandler} />
           </TabPanel>
         ))}
       </TabContext>
