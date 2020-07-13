@@ -9,10 +9,10 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 
-import Form from './form';
+import Form from '../../components/form/form';
 import { setAuth } from '../../store/actions/user';
 
-import config from './config.json';
+import config from '../../components/form/config.json';
 import useRequest from '../../hooks/request';
 
 const Auth = () => {
