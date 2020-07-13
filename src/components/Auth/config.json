@@ -10,28 +10,52 @@
         "type": "text",
         "id": "name",
         "label": "Nome",
-        "placeholder": "Nome completo"
+        "placeholder": "Nome completo",
+        "rules": {
+          "required": "true",
+          "isLength": {
+            "min": 4
+          }
+        }
       },
       "email": {
         "name": "email",
         "type": "email",
         "id": "email",
         "label": "E-mail",
-        "placeholder": "seu@email.com"
+        "placeholder": "seu@email.com",
+        "rules": {
+          "required": "true",
+          "pattern": "/[^@]+@[^\\.]+\\..+/g"
+        }
       },
       "password": {
         "name": "password",
         "type": "password",
         "id": "password",
         "label": "Senha",
-        "placeholder": "Crie uma senha..."
+        "placeholder": "Crie uma senha...",
+        "rules": {
+          "required": "true",
+          "isLength": {
+            "min": 8,
+            "max": 20
+          }
+        }
       },
       "confirmPassword": {
         "name": "confirmPassword",
         "type": "password",
         "id": "confirmPassword",
         "label": "Confirmar Senha",
-        "placeholder": "Confirme a senha"
+        "placeholder": "Confirme a senha",
+        "rules": {
+          "required": "true",
+          "isLength": {
+            "min": 8,
+            "max": 20
+          }
+        }
       }
     }
   },
@@ -46,14 +70,25 @@
         "type": "email",
         "id": "email",
         "label": "E-mail",
-        "placeholder": "seu@email.com"
+        "placeholder": "seu@email.com",
+        "rules": {
+          "required": "true",
+          "pattern": "/[^@]+@[^\\.]+\\..+/g"
+        }
       },
       "password": {
         "name": "password",
         "type": "password",
         "id": "password",
         "label": "Senha",
-        "placeholder": "Crie uma senha..."
+        "placeholder": "Crie uma senha...",
+        "rules": {
+          "required": "true",
+          "isLength": {
+            "min": 8,
+            "max": 20
+          }
+        }
       }
     }
   },
@@ -68,7 +103,11 @@
         "type": "email",
         "id": "email",
         "label": "E-mail",
-        "placeholder": "Email para receber o token"
+        "placeholder": "Email para receber o token",
+        "rules": {
+          "required": "true",
+          "pattern": "/[^@]+@[^\\.]+\\..+/g"
+        }
       }
     }
   }
