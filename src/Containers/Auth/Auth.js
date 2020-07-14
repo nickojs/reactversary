@@ -37,6 +37,7 @@ const Auth = () => {
     if (data) {
       const payload = jwt.decode(data.token);
       dispatch(setAuth({
+        auth: true,
         token: data.token,
         ...payload
       }));
