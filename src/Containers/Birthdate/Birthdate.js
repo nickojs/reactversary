@@ -15,9 +15,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CakeIcon from '@material-ui/icons/Cake';
 import ListIcon from '@material-ui/icons/List';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { logout } from '../../store/actions/user';
 
 import { useStyles } from './styles';
+import { logout } from '../../store/actions/user';
 
 import Register from '../../components/register/register';
 import BirthdatesList from '../../components/birthdatesList/birthdatesList';
@@ -75,19 +75,23 @@ const Dashboard = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <CakeIcon />
-                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  cadastrar aniversario
-                </Typography>
+                <div className={classes.innerTitle}>
+                  <CakeIcon />
+                  <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                    Cadastrar aniversário
+                  </Typography>
+                </div>
                 <Register token={token} />
               </Paper>
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <ListIcon />
-                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  listar aniversarios
-                </Typography>
+                <div className={classes.innerTitle}>
+                  <ListIcon />
+                  <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                    Listar aniversários
+                  </Typography>
+                </div>
                 <BirthdatesList token={token} />
               </Paper>
             </Grid>
