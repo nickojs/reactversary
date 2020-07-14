@@ -11,6 +11,11 @@ import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Avatar from '@material-ui/core/Avatar';
 
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Modal from '@material-ui/core/Modal';
+import UpdateForm from '../updateform/updateform';
+
 import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
 import parser from '../../helpers/dateParser';
@@ -41,6 +46,31 @@ const BirthdateList = ({ token }) => {
     }
   }, [data]);
 
+  const deleteBirthdateHandler = async (id) => {
+    const response = await fetch(`http://${process.env.REACT_APP_BACKEND}:5000/anniversary/birthdate/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    console.log(response);
+  };
+
+  const [modal, setModal] = useState({
+    show: false,
+    id: null,
+    currentData: null
+  });
+
+  const hideModal = () => setModal((pState) => ({ ...pState, show: false }));
+  const modalDataHandler = (id, currentData) => {
+    setModal({
+      show: !modal.show,
+      id,
+      currentData
+    });
+  };
+
   return (
     <TableContainer>
       {error && (
@@ -52,6 +82,13 @@ const BirthdateList = ({ token }) => {
       )}
 
       {loading && <LinearProgress />}
+
+      <Modal open={modal.show} onClose={hideModal}>
+        <div>
+          <UpdateForm token={token} values={modal} />
+        </div>
+      </Modal>
+
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -59,18 +96,23 @@ const BirthdateList = ({ token }) => {
             <TableCell>Presente</TableCell>
             <TableCell>Data</TableCell>
             <TableCell>Local</TableCell>
+            <TableCell>Options</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {values.map((each) => (
             <TableRow key={each.id} className={classes.tableRow}>
               <TableCell className={classes.avatarWrapper}>
-                <Avatar>{each.name[0].toUpperCase()}</Avatar>
+                <Avatar>{each.name && each.name[0].toUpperCase()}</Avatar>
                 <p>{each.name}</p>
               </TableCell>
               <TableCell>{each.gift}</TableCell>
               <TableCell>{each.date}</TableCell>
               <TableCell>{each.location}</TableCell>
+              <TableCell>
+                <DeleteIcon onClick={() => deleteBirthdateHandler(each.id)} />
+                <EditIcon onClick={() => modalDataHandler(each.id, each)} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
