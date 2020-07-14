@@ -20,13 +20,15 @@ import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
 import parser from '../../helpers/dateParser';
 
-const BirthdateList = ({ token }) => {
+const BirthdateList = () => {
   const classes = useStyles();
 
   const [options, setOptions] = useState(null);
   const [requestData] = useRequest(options);
   const { data, loading, error } = requestData;
   const [values, parseValues] = useState([]);
+
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5NDczOTAzOSwiZXhwIjoxNTk0NzQyNjM5fQ.xU9L1zglagSleekhRkZ1pn8itJmLjieoZhiEZpL7urg';
 
   useEffect(() => {
     setOptions({
@@ -47,13 +49,12 @@ const BirthdateList = ({ token }) => {
   }, [data]);
 
   const deleteBirthdateHandler = async (id) => {
-    const response = await fetch(`http://${process.env.REACT_APP_BACKEND}:5000/anniversary/birthdate/${id}`, {
+    await fetch(`http://${process.env.REACT_APP_BACKEND}:5000/anniversary/birthdate/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-    console.log(response);
   };
 
   const [modal, setModal] = useState({
