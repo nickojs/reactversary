@@ -55,9 +55,9 @@ const BirthdateList = ({ token }) => {
         <TableHead>
           <TableRow>
             <TableCell>Aniversariante</TableCell>
-            <TableCell align="right">Presente</TableCell>
-            <TableCell align="right">Data</TableCell>
-            <TableCell align="right">Local</TableCell>
+            <TableCell>Presente</TableCell>
+            <TableCell>Data</TableCell>
+            <TableCell>Local</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
