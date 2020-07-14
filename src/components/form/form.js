@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,19 +30,22 @@ const Form = ({ config, setOptions, requestData }) => {
     url: meta.url
   });
 
+  const { error, loading } = requestData;
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      {error
+        && Object.keys(error.errors)
+          .map((each) => (
+            <Paper>
+              <div className={classes.errorMsg}>
+                <p>{error.errors[each].join(', ')}</p>
+              </div>
+            </Paper>
+          ))}
 
-      {requestData.error && (
-        <Paper>
-          <div className={classes.errorMsg}>
-            <p>{requestData.error.error}</p>
-          </div>
-        </Paper>
-      )}
-
-      {requestData.loading && <LinearProgress />}
+      {loading && <LinearProgress />}
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           {meta.icon === 'account' ? <AccountCircleIcon />
