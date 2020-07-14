@@ -12,7 +12,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
 
-const BirthdateList = () => {
+const BirthdateList = ({ token }) => {
   const classes = useStyles();
 
   const [options, setOptions] = useState(null);
@@ -24,10 +24,10 @@ const BirthdateList = () => {
       method: 'GET',
       url: `http://${process.env.REACT_APP_BACKEND}:5000/anniversary/birthdates`,
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5NDY5MzY4OCwiZXhwIjoxNTk0Njk3Mjg4fQ.B85RsMjBPxteX2EAUbxkk2gT5DCwon1jV648-GoUy30'
+        Authorization: `Bearer ${token}`
       }
     });
-  }, []);
+  }, [token]);
 
   return (
     <TableContainer>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +17,7 @@ import BirthdatesList from '../../components/birthdatesList/birthdatesList';
 
 const Dashboard = () => {
   const classes = useStyles();
+  const { token } = useSelector((state) => state.user);
 
   return (
     <div className={classes.root}>
@@ -34,7 +37,7 @@ const Dashboard = () => {
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                   cadastrar aniversario
                 </Typography>
-                <Register />
+                <Register token={token} />
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
@@ -43,7 +46,7 @@ const Dashboard = () => {
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                   listar aniversarios
                 </Typography>
-                <BirthdatesList />
+                <BirthdatesList token={token} />
               </Paper>
             </Grid>
           </Grid>
