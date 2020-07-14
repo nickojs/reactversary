@@ -8,5 +8,20 @@ export const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650
+  },
+  tableRow: {
+    '&:hover': {
+      background: '#CCC'
+    },
+    '&:hover td': {
+      color: '#FFF'
+    }
+  },
+  avatarWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    '& p': {
+      marginLeft: theme.spacing(2)
+    }
   }
 }));

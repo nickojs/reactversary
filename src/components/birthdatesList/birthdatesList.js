@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Avatar from '@material-ui/core/Avatar';
 
 import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
@@ -62,8 +63,11 @@ const BirthdateList = ({ token }) => {
         </TableHead>
         <TableBody>
           {values.map((each) => (
-            <TableRow key={each.id}>
-              <TableCell>{each.name}</TableCell>
+            <TableRow key={each.id} className={classes.tableRow}>
+              <TableCell className={classes.avatarWrapper}>
+                <Avatar>{each.name[0].toUpperCase()}</Avatar>
+                <p>{each.name}</p>
+              </TableCell>
               <TableCell>{each.gift}</TableCell>
               <TableCell>{each.date}</TableCell>
               <TableCell>{each.location}</TableCell>
