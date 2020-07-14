@@ -40,7 +40,7 @@ const Dashboard = () => {
                 <Register token={token} />
               </Paper>
             </Grid>
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <ListIcon />
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
