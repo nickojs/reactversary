@@ -20,15 +20,13 @@ import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
 import parser from '../../helpers/dateParser';
 
-const BirthdateList = () => {
+const BirthdateList = ({ token }) => {
   const classes = useStyles();
 
   const [options, setOptions] = useState(null);
   const [requestData] = useRequest(options);
   const { data, loading, error } = requestData;
   const [values, parseValues] = useState([]);
-
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5NDczOTAzOSwiZXhwIjoxNTk0NzQyNjM5fQ.xU9L1zglagSleekhRkZ1pn8itJmLjieoZhiEZpL7urg';
 
   useEffect(() => {
     setOptions({
