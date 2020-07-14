@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 
 import Container from '@material-ui/core/Container';
@@ -33,6 +34,11 @@ const Auth = () => {
 
   const dispatch = useDispatch();
 
+  const [redirect, setRedirect] = useState({
+    should: false,
+    path: null
+  });
+
   useEffect(() => {
     if (data) {
       const payload = jwt.decode(data.token);
@@ -44,10 +50,20 @@ const Auth = () => {
     }
   }, [dispatch, data]);
 
+  useEffect(() => {
+    if (data && options.url === 'login') {
+      setRedirect({
+        should: true,
+        path: options.url
+      });
+    }
+  }, [data, options]);
+
   const forms = Object.keys(config);
 
   return (
     <Container>
+      {redirect.should && <Redirect to="/dashboard" />}
       <TabContext value={value}>
         <AppBar position="static">
           <TabList
