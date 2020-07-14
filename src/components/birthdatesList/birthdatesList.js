@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +12,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { useStyles } from './styles';
 import useRequest from '../../hooks/request';
+import parser from '../../helpers/dateParser';
 
 const BirthdateList = ({ token }) => {
   const classes = useStyles();
@@ -18,6 +20,7 @@ const BirthdateList = ({ token }) => {
   const [options, setOptions] = useState(null);
   const [requestData] = useRequest(options);
   const { data, loading, error } = requestData;
+  const [values, parseValues] = useState([]);
 
   useEffect(() => {
     setOptions({
@@ -28,6 +31,14 @@ const BirthdateList = ({ token }) => {
       }
     });
   }, [token]);
+
+  useEffect(() => {
+    if (data) {
+      const { birthdates } = data;
+      const parsedData = parser(birthdates);
+      parseValues(parsedData);
+    }
+  }, [data]);
 
   return (
     <TableContainer>
@@ -50,7 +61,7 @@ const BirthdateList = ({ token }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data && data.birthdates.map((each) => (
+          {values.map((each) => (
             <TableRow key={each.id}>
               <TableCell>{each.name}</TableCell>
               <TableCell>{each.gift}</TableCell>
