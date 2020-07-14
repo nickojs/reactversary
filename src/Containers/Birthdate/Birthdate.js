@@ -6,9 +6,12 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CakeIcon from '@material-ui/icons/Cake';
+import ListIcon from '@material-ui/icons/List';
+
 import { useStyles } from './styles';
 
 import Register from '../../components/register/register';
+import BirthdatesList from '../../components/birthdatesList/birthdatesList';
 
 const Dashboard = () => {
   const classes = useStyles();
@@ -36,7 +39,11 @@ const Dashboard = () => {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={classes.paper}>
-                listar aniversarios
+                <ListIcon />
+                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                  listar aniversarios
+                </Typography>
+                <BirthdatesList />
               </Paper>
             </Grid>
           </Grid>
